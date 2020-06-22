@@ -1,9 +1,6 @@
 import * as actionTypes from './constants';
 import { fromJS } from 'immutable';
-import {
-	getBannerRequest,
-	getRecommendListRequest,
-} from '../../../api/request';
+import { getBannerRequest, getRecommendListRequest } from '../../../api/request';
 
 export const changeBannerList = (data) => ({
 	type: actionTypes.CHANGE_BANNER,
@@ -35,6 +32,7 @@ export const getRecommendList = () => {
 	return (dispatch) => {
 		getRecommendListRequest()
 			.then((data) => {
+				console.log(data);
 				dispatch(changeRecommendList(data.result));
 				dispatch(changeEnterLoading(false)); // 改变 loading
 			})

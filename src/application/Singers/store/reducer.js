@@ -16,6 +16,7 @@ export default (state = defaultState, action) => {
 		case actionTypes.CHANGE_PAGE_COUNT:
 			return state.set('pageCount', action.data);
 		case actionTypes.CHANGE_ENTER_LOADING:
+			console.log(action.data);
 			return state.set('enterLoading', action.data);
 		case actionTypes.CHANGE_PULLUP_LOADING:
 			return state.set('pullUpLoading', action.data);

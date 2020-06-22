@@ -1,7 +1,4 @@
-import {
-	getHotSingerListRequest,
-	getSingerListRequest,
-} from '../../../api/request';
+import { getHotSingerListRequest, getSingerListRequest } from '../../../api/request';
 
 import {
 	CHANGE_SINGER_LIST,
@@ -47,6 +44,7 @@ export const getHotSingerList = () => {
 		getHotSingerListRequest(0)
 			.then((res) => {
 				const data = res.artists;
+				console.log(res, 21321313);
 				dispatch(changeSingerList(data));
 				dispatch(changeEnterLoading(false));
 				dispatch(changePullDownLoading(false));
@@ -78,6 +76,7 @@ export const getSingerList = (category, alpha) => {
 		getSingerListRequest(category, alpha, 0)
 			.then((res) => {
 				const data = res.artists;
+				console.log(res, 1232);
 				dispatch(changeSingerList(data));
 				dispatch(changeEnterLoading(false));
 				dispatch(changePullUpLoading(false));
@@ -95,6 +94,7 @@ export const refreshMoreSingerList = (category, alpha) => {
 		const singerList = getState().getIn(['singers', 'singerList']).toJS();
 		getSingerListRequest(category, alpha, pageCount)
 			.then((res) => {
+				console.log(res, 6666);
 				const data = [...singerList, ...res.artists];
 				dispatch(changeSingerList(data));
 				dispatch(changePullUpLoading(false));
