@@ -7,6 +7,7 @@ import Scroll from '../../baseUI/scroll/index';
 import { Content } from './style';
 import { forceCheck } from 'react-lazyload';
 import Loading from '../../baseUI/loading/index';
+import { renderRoutes } from 'react-router-config';
 
 function Recommend(props) {
 	const { bannerList, recommendList, enterLoading } = props;
@@ -29,11 +30,10 @@ function Recommend(props) {
 			<Scroll className="list" onScroll={forceCheck}>
 				<div>
 					<Slider bannerList={bannerListJS}></Slider>
-					<RecommendList
-						recommendList={recommendListJS}
-					></RecommendList>
+					<RecommendList recommendList={recommendListJS}></RecommendList>
 				</div>
 				{enterLoading ? <Loading></Loading> : null}
+				{renderRoutes(props.route.routes)}
 			</Scroll>
 		</Content>
 	);
@@ -60,7 +60,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 // 将 ui 组件包装成容器组件
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(React.memo(Recommend));
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Recommend));

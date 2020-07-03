@@ -44,7 +44,6 @@ export const getHotSingerList = () => {
 		getHotSingerListRequest(0)
 			.then((res) => {
 				const data = res.artists;
-				console.log(res, 21321313);
 				dispatch(changeSingerList(data));
 				dispatch(changeEnterLoading(false));
 				dispatch(changePullDownLoading(false));
