@@ -11,6 +11,7 @@ import Loading from './../../baseUI/loading/index';
 import { EnterLoading } from '../Singers/style';
 import { changeEnterLoading } from './store/actionCreators';
 import { constants } from '../Recommend/store';
+import SongsList from '../SongList';
 
 function Singer(props) {
 	const initialHeight = useRef(0);
@@ -37,7 +38,7 @@ function Singer(props) {
 	useEffect(() => {
 		const id = props.match.params.id;
 		getSingerDataDispatch(id);
-		console.log(artist);
+		let h = imageWrapper.current.offsetHeight;
 	}, []);
 
 	const setShowStatusFalse = useCallback(() => {
@@ -45,6 +46,10 @@ function Singer(props) {
 	}, []);
 
 	const handleScroll = () => {};
+
+	const musicAnimation = (x, y) => {
+		musicNoteRef.current.startAnimation({ x, y });
+	};
 
 	return (
 		<CSSTransition
@@ -67,7 +72,12 @@ function Singer(props) {
 				{/* <BgLayer ref={layer}></BgLayer> */}
 				<SongListWrapper ref={songScrollWrapper} play={songsCount}>
 					<Scroll onScroll={handleScroll} ref={songScroll}>
-						{/* <SongsList songs={songs}></SongsList> */}
+						<SongsList
+							songs={songs}
+							showCollect={false}
+							usePageSplit={false}
+							musicAnimation={musicAnimation}
+						></SongsList>
 					</Scroll>
 				</SongListWrapper>
 			</Container>
